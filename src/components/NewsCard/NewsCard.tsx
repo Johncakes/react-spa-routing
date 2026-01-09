@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { AspectRatio } from "../ui/aspect-ratio";
 
 interface NewsCardProps {
@@ -17,7 +17,7 @@ export default function NewsCard({
   return (
     <a href={link} target="_blank" rel="noreferrer" className="block">
       <Card className="overflow-hidden h-full flex flex-row transition-all hover:shadow-lg px-6">
-        {imageUrl && (
+        {imageUrl ? (
           <div className="sm:w-40 sm:h-40 w-24 h-24 shrink-0 rounded-md overflow-hidden">
             <AspectRatio ratio={1 / 1}>
               <img
@@ -26,6 +26,10 @@ export default function NewsCard({
                 className="w-full h-full object-cover"
               />
             </AspectRatio>
+          </div>
+        ) : (
+          <div className="sm:w-40 sm:h-40 w-24 h-24 shrink-0 rounded-md overflow-hidden bg-muted flex items-center justify-center">
+            <span className="text-3xl font-bold text-primary ">GN</span>
           </div>
         )}
         <div className="flex flex-col flex-1">
