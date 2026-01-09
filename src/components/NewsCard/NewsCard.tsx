@@ -18,7 +18,7 @@ export default function NewsCard({
     <a href={link} target="_blank" rel="noreferrer" className="block">
       <Card className="overflow-hidden h-full flex flex-row transition-all hover:shadow-lg px-6">
         {imageUrl && (
-          <div className="w-40 h-40 shrink-0 rounded-md overflow-hidden">
+          <div className="sm:w-40 sm:h-40 w-24 h-24 shrink-0 rounded-md overflow-hidden">
             <AspectRatio ratio={1 / 1}>
               <img
                 src={imageUrl}
