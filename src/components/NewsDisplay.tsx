@@ -15,13 +15,16 @@ interface ArticlesResponse {
   articles: Article[];
 }
 
+function isValidCategory(path: string): path is ValidCategory {
+  const validCategories = NEWS_CATEGORIES.map((c) => c.href);
+  return validCategories.includes(path as ValidCategory);
+}
+
 export default function NewsDisplay() {
   const { category } = useParams<{ category: string }>();
-
-  const validCategories = NEWS_CATEGORIES.map((c) => c.href);
   const categoryPath = category ? `/${category}` : "/";
 
-  if (!validCategories.includes(categoryPath as ValidCategory)) {
+  if (!isValidCategory(categoryPath)) {
     return <div>404 Not Found :</div>;
   }
 
