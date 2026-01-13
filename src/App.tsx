@@ -13,8 +13,8 @@ export default function App() {
         <div className="w-full max-w-6xl">
           <main className="p-4">
             <Routes>
-              <Route path="/" element={<NewsDisplay />} />
-              <Route path="/:category" element={<NewsDisplay />} />
+              <Route path="/:category?" element={<NewsDisplay />} />
+              <Route path="*" element={<div>404 Not Found</div>} />
             </Routes>
           </main>
         </div>

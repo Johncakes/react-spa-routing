@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import NewsCard from "../components/NewsCard/NewsCard";
 import { useQuery } from "@tanstack/react-query";
 import { getNewsData } from "../api/getNewsData";
+import NEWS_CATEGORIES, { ValidCategory } from "@/constants/newsCategory";
 
 interface Article {
   title: string;
@@ -15,7 +16,15 @@ interface ArticlesResponse {
 }
 
 export default function NewsDisplay() {
-  const { category } = useParams<{ category?: string }>();
+  const { category } = useParams<{ category: string }>();
+
+  const validCategories = NEWS_CATEGORIES.map((c) => c.href);
+  const categoryPath = category ? `/${category}` : "/";
+
+  if (!validCategories.includes(categoryPath as ValidCategory)) {
+    return <div>404 Not Found :</div>;
+  }
+
   const categoryToFetch = category || "general";
 
   const { data, isLoading, isError } = useQuery<ArticlesResponse>({
@@ -36,10 +45,10 @@ export default function NewsDisplay() {
   return (
     <div className="grid gap-4">
       {data && data.articles ? (
-        data.articles.map((item, idx) => (
+        data.articles.map((item) => (
           <NewsCard
-            key={`${item.url}-${idx}`}
-            Title={item.title}
+            key={item.url}
+            title={item.title}
             imageUrl={item.urlToImage}
             description={item.description}
             link={item.url}

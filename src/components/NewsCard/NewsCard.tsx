@@ -3,14 +3,14 @@ import { AspectRatio } from "../ui/aspect-ratio";
 import { useState } from "react";
 
 interface NewsCardProps {
-  Title?: string;
+  title?: string;
   imageUrl?: string | null;
   description?: string | null;
   link?: string;
 }
 
 export default function NewsCard({
-  Title,
+  title,
   imageUrl,
   description,
   link,
@@ -25,7 +25,7 @@ export default function NewsCard({
             <AspectRatio ratio={1 / 1}>
               <img
                 src={imageUrl}
-                alt={Title ?? ""}
+                alt={title ?? ""}
                 className="w-full h-full object-cover"
                 onError={() => setIsImageError(true)}
               />
@@ -37,7 +37,7 @@ export default function NewsCard({
           </div>
         )}
         <div className="flex flex-col flex-1">
-          <CardTitle className="line-clamp-2 mb-2">{Title}</CardTitle>
+          <CardTitle className="line-clamp-2 mb-2">{title}</CardTitle>
           <CardContent className="flex-1 p-0">
             <p className="text-sm text-muted-foreground line-clamp-3">
               {description}

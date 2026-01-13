@@ -9,7 +9,7 @@ export async function getNewsData(category: string) {
       params: {
         country: "us",
         apiKey: NEWS_API_KEY,
-        category: category,
+        category,
       },
     });
     return response.data;

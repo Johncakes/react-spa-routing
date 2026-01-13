@@ -8,18 +8,8 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { ModeToggle } from "../modeToggle";
-import { v4 as uuidv4 } from "uuid";
 import { NavLink, useLocation } from "react-router-dom";
-
-const NEWS_CATEGORIES = [
-  { title: "General", href: "/" },
-  { title: "Business", href: "/business" },
-  { title: "Entertainment", href: "/entertainment" },
-  { title: "Health", href: "/health" },
-  { title: "Science", href: "/science" },
-  { title: "Sports", href: "/sports" },
-  { title: "Technology", href: "/technology" },
-] as const;
+import NEWS_CATEGORIES from "@/constants/newsCategory";
 
 export function Header() {
   const location = useLocation();
@@ -40,7 +30,7 @@ export function Header() {
             <NavigationMenuList className="hidden lg:flex gap-1">
               {NEWS_CATEGORIES.map((category) => (
                 <HeaderMenuListItem
-                  key={uuidv4()}
+                  key={category.href}
                   title={category.title}
                   href={category.href}
                 />
@@ -53,7 +43,7 @@ export function Header() {
                 <NavigationMenuContent>
                   <ul>
                     {NEWS_CATEGORIES.map((category) => (
-                      <li key={uuidv4()} className="mb-2">
+                      <li key={category.href} className="mb-2">
                         <NavigationMenuLink asChild>
                           <NavLink to={category.href}>{category.title}</NavLink>
                         </NavigationMenuLink>
